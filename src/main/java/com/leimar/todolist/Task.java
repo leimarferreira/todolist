@@ -46,19 +46,19 @@ public class Task {
 	public LocalDate getStartDate() {
 		return startDate;
 	}
-	
+
 	public long getStartInEpochDay() {
 		if (startDate != null) {
 			return startDate.toEpochDay();
 		}
-		
+
 		return -1l;
 	}
 
 	public void setStartDate(LocalDate startDate) {
 		this.startDate = startDate;
 	}
-	
+
 	public void setStartDate(long epochDay) {
 		if (epochDay != -1l) {
 			this.startDate = LocalDate.ofEpochDay(epochDay);
@@ -70,19 +70,19 @@ public class Task {
 	public LocalDate getEndDate() {
 		return endDate;
 	}
-	
+
 	public long getEndDateInEpochDay() {
 		if (endDate != null) {
 			return endDate.toEpochDay();
 		}
-		
+
 		return -1l;
 	}
 
 	public void setEndDate(LocalDate endDate) {
 		this.endDate = endDate;
 	}
-	
+
 	public void setEndDate(long epochDay) {
 		if (epochDay != -1l) {
 			this.endDate = LocalDate.ofEpochDay(epochDay);
@@ -90,11 +90,11 @@ public class Task {
 			this.endDate = null;
 		}
 	}
-	
+
 	public boolean isDone() {
 		return this.isDone;
 	}
-	
+
 	public void toogleDone() {
 		isDone = !isDone;
 	}

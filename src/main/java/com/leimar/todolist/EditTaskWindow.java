@@ -37,7 +37,7 @@ public class EditTaskWindow extends Window {
 
 	private final int NAME_CHAR_LIMIT = 50;
 	private final int DESCRIPTION_CHAR_LIMIT = 150;
-	
+
 	/* Rate of the screen occupied by the width of window */
 	private final double WIDTH_RATIO = 0.32;
 	/* Rate of the screen occupied by the height of the window */
@@ -143,7 +143,7 @@ public class EditTaskWindow extends Window {
 			if (endDatePicker.getValue() != null) {
 				task.setEndDate(endDatePicker.getValue());
 			}
-			
+
 			if (task.getName() != null) {
 				TaskDAO dao = new TaskDAO();
 				dao.updateTask(task);
@@ -169,31 +169,31 @@ public class EditTaskWindow extends Window {
 		nameField.setPrefWidth(textFieldsWidth);
 		nameField.setMinWidth(Region.USE_PREF_SIZE);
 		nameField.setMaxWidth(Region.USE_PREF_SIZE);
-		
+
 		nameField.setPrefHeight(nameField.getHeight());
 		nameField.setMinHeight(Region.USE_PREF_SIZE);
 		nameField.setMaxHeight(Region.USE_PREF_SIZE);
-		
+
 		descriptionArea.setPrefWidth(textFieldsWidth);
 		descriptionArea.setMaxWidth(Region.USE_PREF_SIZE);
 		descriptionArea.setMinWidth(Region.USE_PREF_SIZE);
-		
+
 		descriptionArea.setPrefHeight(descriptionAreaHeight);
 		descriptionArea.setMaxHeight(Region.USE_PREF_SIZE);
 		descriptionArea.setMinHeight(Region.USE_PREF_SIZE);
-		
+
 		descriptionArea.resize(descriptionArea.getPrefWidth(), descriptionArea.getPrefHeight());
-		
+
 		startDatePicker.setPrefWidth(datePickersWidth);
 		startDatePicker.setMinWidth(datePickersWidth);
 		startDatePicker.setMaxWidth(datePickersWidth);
-		
+
 		startDatePicker.resize(startDatePicker.getPrefWidth(), startDatePicker.getHeight());
-		
+
 		endDatePicker.setPrefWidth(datePickersWidth);
 		endDatePicker.setMinWidth(datePickersWidth);
 		endDatePicker.setMaxWidth(datePickersWidth);
-		
+
 		endDatePicker.resize(endDatePicker.getWidth(), endDatePicker.getHeight());
 	}
 
@@ -277,7 +277,7 @@ public class EditTaskWindow extends Window {
 			}
 		});
 	}
-	
+
 	private void showSetNameError() {
 		Alert errorSettingName = new Alert(AlertType.ERROR);
 		errorSettingName.setTitle(labels.getString("taskNameErrorTitle"));

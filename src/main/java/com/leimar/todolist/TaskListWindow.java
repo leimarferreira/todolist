@@ -14,7 +14,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 public class TaskListWindow extends Window {
-	
+
 	/* tasks choicebox indexes */
 	private final static int SHOW_UNDONE = 0;
 	private final static int SHOW_DONE = 1;
@@ -32,10 +32,10 @@ public class TaskListWindow extends Window {
 	private Button removeButton;
 	private static ChoiceBox<String> tasksChoiceBox;
 	private static ListView<Task> taskList;
-	
+
 	public TaskListWindow() {
 		stage = new Stage();
-		
+
 		/* initialize nodes */
 		addButton = new Button(labels.getString("addButton"));
 		editButton = new Button(labels.getString("editButton"));
@@ -44,7 +44,7 @@ public class TaskListWindow extends Window {
 		toogleDoneButton.setVisible(false);
 		removeButton = new Button(labels.getString("removeButton"));
 		removeButton.setVisible(false);
-		
+
 		tasksChoiceBox = new ChoiceBox<>();
 		tasksChoiceBox.getItems().add(SHOW_UNDONE, labels.getString("choiceBoxUndone"));
 		tasksChoiceBox.getItems().add(SHOW_DONE, labels.getString("choiceBoxDone"));
@@ -55,26 +55,26 @@ public class TaskListWindow extends Window {
 		TaskDAO dao = new TaskDAO();
 		List<Task> tasks = dao.getUndoneTasks(); // get the tasks
 		dao.close();
-		
+
 		if (tasks != null) {
 			taskList.setItems(FXCollections.observableList(tasks));
 		}
 
 		rootPane = new AnchorPane(addButton, editButton, toogleDoneButton, removeButton, tasksChoiceBox, taskList);
 	}
-	
+
 	public void setNodesSize() {
 		/* calculate the size of the window and margins */
 		double sceneWidth = getSceneWidth();
 		double sceneHeight = getSceneHeight();
 		double horizontalMargin = getHorizontalMargin();
 		double verticalMargin = getVerticalMargin();
-		
+
 		/* set the size of the nodes */
 		taskList.setPrefWidth(sceneWidth - 2 * horizontalMargin);
 		taskList.setPrefHeight(sceneHeight - addButton.getHeight() - (3 * verticalMargin));
 	}
-	
+
 	public void setNodesPosition() {
 		/* calculate the size of the window and margins */
 		double horizontalMargin = getHorizontalMargin();
@@ -94,7 +94,7 @@ public class TaskListWindow extends Window {
 		positionBelowOf(addButton, taskList, verticalMargin);
 		positionOnLeft(taskList, horizontalMargin);
 	}
-	
+
 	public void setEvents() {
 		/* set the action when add button is pressed */
 		addButton.setOnAction(event -> {
@@ -102,7 +102,7 @@ public class TaskListWindow extends Window {
 			EditTaskWindow addTask = new EditTaskWindow(stage);
 			addTask.start();
 		});
-		
+
 		/* set the action when edit button is pressed */
 		editButton.setOnAction(event -> {
 			Task task = taskList.getSelectionModel().getSelectedItem(); // get the task to edit
@@ -125,7 +125,7 @@ public class TaskListWindow extends Window {
 			if (selected != SHOW_ALL) {
 				taskList.getItems().remove(task);
 			}
-			
+
 			changeButtonsVisibility(); // hide unused buttons
 		});
 
@@ -137,10 +137,10 @@ public class TaskListWindow extends Window {
 			dao.close();
 			changeButtonsVisibility(); // hide unused buttons
 		});
-		
+
 		tasksChoiceBox.setOnAction(event -> {
 			int selected = tasksChoiceBox.getSelectionModel().getSelectedIndex(); // get the selected option index
-			ObservableList<Task> tasks = null; 
+			ObservableList<Task> tasks = null;
 			TaskDAO dao = new TaskDAO();
 
 			if (selected == SHOW_UNDONE) {
@@ -158,7 +158,7 @@ public class TaskListWindow extends Window {
 
 		taskList.setOnMouseClicked(event -> changeButtonsVisibility());
 	}
-	
+
 	private void changeButtonsVisibility() {
 		if (taskList.getSelectionModel().isEmpty()) {
 			editButton.setVisible(false);
@@ -170,14 +170,14 @@ public class TaskListWindow extends Window {
 			} else {
 				toogleDoneButton.setText(labels.getString("toogleDoneUndone"));
 			}
-			
+
 			positionOnRightOf(toogleDoneButton, removeButton, getHorizontalMargin());
 			editButton.setVisible(true);
 			toogleDoneButton.setVisible(true);
 			removeButton.setVisible(true);
 		}
 	}
-	
+
 	@SuppressWarnings("exports")
 	public static void addTask(Task task) {
 		int selected = tasksChoiceBox.getSelectionModel().getSelectedIndex();
@@ -185,11 +185,11 @@ public class TaskListWindow extends Window {
 			taskList.getItems().add(task);
 		}
 	}
-	
+
 	public static void refresh() {
 		taskList.refresh();
 	}
-	
+
 	public void start() {
 		double sceneWidth = getScreenWidth() * WIDTH_RATE; // calculate the width of the window
 		double sceneHeight = getScreenHeight() * HEIGHT_RATE; // calculate the height of the window

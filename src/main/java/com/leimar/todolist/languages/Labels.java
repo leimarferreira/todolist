@@ -7,26 +7,26 @@ public class Labels extends ListResourceBundle {
 	@Override
 	protected Object[][] getContents() {
 		return new Object[][] {
-			{"taskListWindowTitle", "Task List"},
-			{"editTaskWindowTitleAdd", "Add Task"},
-			{"editTaskWindowTitleEdit", "Edit Task"},
-			{"addButton", "Add"},
-			{"editButton", "Edit"},
-			{"toogleDoneUndone", "Mark as done"},
-			{"toogleDoneDone", "Mark as undone"},
-			{"removeButton", "Remove"},
-			{"choiceBoxUndone", "Show undone tasks"},
-			{"choiceBoxDone", "Show done tasks"},
-			{"choiceBoxAll", "Show all tasks"},
-			{"nameLabel", "Name"},
-			{"descriptionLabel", "Description"},
-			{"startDateLabel", "Start date"},
-			{"endDateLabel", "End date"},
-			{"cancelButton", "Cancel"},
-			{"saveButton", "Save"},
-			{"taskNameErrorTitle", "Error"},
-			{"taskNameErrorHeader", "Name is empty."},
-			{"taskNameErrorContext", "Name can't be empty."}
+			{ "taskListWindowTitle", "Task List" },
+			{ "editTaskWindowTitleAdd", "Add Task" },
+			{ "editTaskWindowTitleEdit", "Edit Task" },
+			{ "addButton", "Add" },
+			{ "editButton", "Edit" },
+			{ "toogleDoneUndone", "Mark as done" },
+			{ "toogleDoneDone", "Mark as undone" },
+			{ "removeButton", "Remove" },
+			{ "choiceBoxUndone", "Show undone tasks" },
+			{ "choiceBoxDone", "Show done tasks" },
+			{ "choiceBoxAll", "Show all tasks" },
+			{ "nameLabel", "Name" },
+			{ "descriptionLabel", "Description" },
+			{ "startDateLabel", "Start date" },
+			{ "endDateLabel", "End date" },
+			{ "cancelButton", "Cancel" },
+			{ "saveButton", "Save" },
+			{ "taskNameErrorTitle", "Error" },
+			{ "taskNameErrorHeader", "Name is empty." },
+			{ "taskNameErrorContext", "Name can't be empty." }
 		};
 	}
 
