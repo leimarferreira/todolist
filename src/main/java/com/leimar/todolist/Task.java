@@ -95,7 +95,7 @@ public class Task {
 		return this.isDone;
 	}
 
-	public void toogleDone() {
+	public void toggleDone() {
 		isDone = !isDone;
 	}
 

@@ -43,7 +43,7 @@ public class TaskDAO {
 				task.setEndDate(resultSet.getLong("end_date"));
 				int isDone = resultSet.getInt("is_done");
 				if (isDone == 1) {
-					task.toogleDone();
+					task.toggleDone();
 				}
 				tasks.add(task);
 			}
@@ -74,7 +74,7 @@ public class TaskDAO {
 				task.setDescription(resultSet.getString("description"));
 				task.setStartDate(resultSet.getLong("start_date"));
 				task.setEndDate(resultSet.getLong("end_date"));
-				task.toogleDone();
+				task.toggleDone();
 				tasks.add(task);
 			}
 		} catch (SQLException e) {

@@ -28,7 +28,7 @@ public class TaskListWindow extends Window {
 	/* nodes */
 	private Button addButton;
 	private Button editButton;
-	private Button toogleDoneButton;
+	private Button toggleDoneButton;
 	private Button removeButton;
 	private static ChoiceBox<String> tasksChoiceBox;
 	private static ListView<Task> taskList;
@@ -40,8 +40,8 @@ public class TaskListWindow extends Window {
 		addButton = new Button(labels.getString("addButton"));
 		editButton = new Button(labels.getString("editButton"));
 		editButton.setVisible(false);
-		toogleDoneButton = new Button(labels.getString("toogleDoneUndone"));
-		toogleDoneButton.setVisible(false);
+		toggleDoneButton = new Button(labels.getString("toggleDoneUndone"));
+		toggleDoneButton.setVisible(false);
 		removeButton = new Button(labels.getString("removeButton"));
 		removeButton.setVisible(false);
 
@@ -60,7 +60,7 @@ public class TaskListWindow extends Window {
 			taskList.setItems(FXCollections.observableList(tasks));
 		}
 
-		rootPane = new AnchorPane(addButton, editButton, toogleDoneButton, removeButton, tasksChoiceBox, taskList);
+		rootPane = new AnchorPane(addButton, editButton, toggleDoneButton, removeButton, tasksChoiceBox, taskList);
 	}
 
 	public void setNodesSize() {
@@ -85,10 +85,10 @@ public class TaskListWindow extends Window {
 		positionOnLeft(addButton, horizontalMargin);
 		positionOnTop(editButton, verticalMargin);
 		positionOnRightOf(addButton, editButton, horizontalMargin);
-		positionOnTop(toogleDoneButton, verticalMargin);
-		positionOnRightOf(editButton, toogleDoneButton, horizontalMargin);
+		positionOnTop(toggleDoneButton, verticalMargin);
+		positionOnRightOf(editButton, toggleDoneButton, horizontalMargin);
 		positionOnTop(removeButton, verticalMargin);
-		positionOnRightOf(toogleDoneButton, removeButton, horizontalMargin);
+		positionOnRightOf(toggleDoneButton, removeButton, horizontalMargin);
 		positionOnTop(tasksChoiceBox, verticalMargin);
 		positionOnRight(tasksChoiceBox, horizontalMargin);
 		positionBelowOf(addButton, taskList, verticalMargin);
@@ -112,9 +112,9 @@ public class TaskListWindow extends Window {
 			changeButtonsVisibility();
 		});
 
-		toogleDoneButton.setOnAction(event -> {
+		toggleDoneButton.setOnAction(event -> {
 			Task task = taskList.getSelectionModel().getSelectedItem(); // get the task
-			task.toogleDone();
+			task.toggleDone();
 
 			TaskDAO dao = new TaskDAO();
 			dao.updateTask(task); // update database
@@ -162,18 +162,18 @@ public class TaskListWindow extends Window {
 	private void changeButtonsVisibility() {
 		if (taskList.getSelectionModel().isEmpty()) {
 			editButton.setVisible(false);
-			toogleDoneButton.setVisible(false);
+			toggleDoneButton.setVisible(false);
 			removeButton.setVisible(false);
 		} else {
 			if (taskList.getSelectionModel().getSelectedItem().isDone()) {
-				toogleDoneButton.setText(labels.getString("toogleDoneDone"));
+				toggleDoneButton.setText(labels.getString("toggleDoneDone"));
 			} else {
-				toogleDoneButton.setText(labels.getString("toogleDoneUndone"));
+				toggleDoneButton.setText(labels.getString("toggleDoneUndone"));
 			}
 
-			positionOnRightOf(toogleDoneButton, removeButton, getHorizontalMargin());
+			positionOnRightOf(toggleDoneButton, removeButton, getHorizontalMargin());
 			editButton.setVisible(true);
-			toogleDoneButton.setVisible(true);
+			toggleDoneButton.setVisible(true);
 			removeButton.setVisible(true);
 		}
 	}
